@@ -8,5 +8,6 @@ struct Lib
 
     void displayName() const;
 
+private:
     std::string m_name;
 };
