@@ -1,0 +1,98 @@
+name: ci
+
+on:
+  - push
+  - pull_request
+  - workflow_dispatch
+
+jobs:
+  build:
+    name: ${{ matrix.os }} ${{ matrix.compiler }} ${{ matrix.build_type }}
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 120
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-22.04
+          - macos-13
+          - windows-2022
+        compiler:
+          - llvm
+          - gcc
+        build_type:
+          - Debug
+          - Release
+
+        exclude:
+          - os: windows-2022
+            compiler: gcc
+          - os: macos-13
+            compiler: gcc
+
+        include:
+          - os: windows-2022
+            compiler: msvc
+            build_type: Debug
+          - os: windows-2022
+            compiler: msvc
+            build_type: Release
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Cpp Environment
+        uses: aminya/setup-cpp@v1
+        with:
+          compiler: ${{ matrix.compiler }}
+          vcvarsall: ${{ contains(matrix.os, 'windows') }}
+          cmake: true
+          ninja: true
+          vcpkg: true
+
+      - name: CMake Configure
+        env:
+          VCPKG_ROOT: '~/vcpkg'
+        shell: bash
+        run: |
+          if [ "${{ runner.os }}" == "Windows" ]; then
+            cmake --preset=Windows-${{ matrix.compiler }}-${{ matrix.build_type }}
+          else
+            cmake --preset=${{ matrix.compiler }}-${{ matrix.build_type }}
+          fi
+
+      - name: CMake Build
+        shell: bash
+        run: |
+          if [ "${{ runner.os }}" == "Windows" ]; then
+            cmake --build --preset=Windows-${{ matrix.compiler }}-${{ matrix.build_type }}
+          else
+            cmake --build --preset=${{ matrix.compiler }}-${{ matrix.build_type }}
+          fi
+
+  format:
+    name: Formatting
+    runs-on: ubuntu-22.04
+    env:
+      CLANG_FORMAT_VERSION: 17
+
+    strategy:
+      fail-fast: false
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Clang-Format
+        uses: aminya/setup-cpp@v1
+        with:
+          clangformat: ${{ env.CLANG_FORMAT_VERSION }}
+
+      - name: Format Code
+        run: cmake -DCLANG_FORMAT_EXECUTABLE=clang-format-${{ env.CLANG_FORMAT_VERSION }} -P cmake/Format.cmake
+
+      - name: Check Formatting
+        run: git diff --color --exit-code
