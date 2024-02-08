@@ -22,9 +22,6 @@ InlayHints:
   DeducedTypes: Yes
   TypeNameLimit: 24
 
-# https://clangd.llvm.org/design/include-cleaner
-# By default, Include Cleaner will not diagnose headers from the Standard Library.
-# Standard Library headers support is not complete yet
 Diagnostics:
   UnusedIncludes: Strict
   MissingIncludes: Strict
