@@ -78,14 +78,15 @@ MaxEmptyLinesToKeep: 1
 # Sorting
 IncludeBlocks: Regroup
 IncludeCategories:
+  # "Header.h", "Header.hpp" etc.
   - Priority: 1
     Regex: '^\"(.+)\"$'
+  # Core Library
   - Priority: 2
     Regex: '^<Core\/'
+  # C++ standard headers
   - Priority: 3
-    Regex: '^<([^c](.+)|coroutine|charconv|chrono|complex|concepts|condition_variable)>$'
-  - Priority: 4
-    Regex: '^<c(.+)>$'
+    Regex: '<[[:alnum:]_-]+>'
 SortIncludes: true
 SortUsingDeclarations: true
 
