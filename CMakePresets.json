@@ -122,6 +122,7 @@
         },
         {
             "name": "Windows-msvc-Debug",
+            "displayName": "win-msvc-debug",
             "inherits": [
                 "confs-windows-msvc-common",
                 "debug"
@@ -129,6 +130,7 @@
         },
         {
             "name": "Windows-msvc-Release",
+            "displayName": "win-msvc-release",
             "inherits": [
                 "confs-windows-msvc-common",
                 "release"
@@ -136,6 +138,7 @@
         },
         {
             "name": "Windows-llvm-Debug",
+            "displayName": "win-llvm-debug",
             "inherits": [
                 "confs-windows-llvm-common",
                 "debug"
@@ -143,6 +146,7 @@
         },
         {
             "name": "Windows-llvm-Release",
+            "displayName": "win-llvm-release",
             "inherits": [
                 "confs-windows-llvm-common",
                 "release"
@@ -180,18 +184,22 @@
     "buildPresets": [
         {
             "name": "Windows-msvc-Debug",
+            "displayName": "win-msvc-debug",
             "configurePreset": "Windows-msvc-Debug"
         },
         {
             "name": "Windows-msvc-Release",
+            "displayName": "win-msvc-release",
             "configurePreset": "Windows-msvc-Release"
         },
         {
             "name": "Windows-llvm-Debug",
+            "displayName": "win-llvm-debug",
             "configurePreset": "Windows-llvm-Debug"
         },
         {
             "name": "Windows-llvm-Release",
+            "displayName": "win-llvm-release",
             "configurePreset": "Windows-llvm-Release"
         },
         {
@@ -225,20 +233,41 @@
         },
         {
             "name": "test-Windows-msvc-Debug",
+            "displayName": "test-win-msvc-debug",
             "description": "Enable output and stop on failure",
             "inherits": "test-common",
             "configurePreset": "Windows-msvc-Debug"
         },
         {
             "name": "test-Windows-llvm-Debug",
+            "displayName": "test-win-llvm-debug",
             "description": "Enable output and stop on failure",
             "inherits": "test-common",
             "configurePreset": "Windows-llvm-Debug"
         }
     ],
+    "packagePresets": [
+        {
+            "name": "package-Windows-msvc-Debug",
+            "displayName": "pkg-windows-msvc-debug",
+            "configurePreset": "Windows-msvc-Debug",
+            "generators": [
+                "TGZ"
+            ]
+        },
+        {
+            "name": "package-Windows-llvm-Debug",
+            "displayName": "pkg-windows-llvm-debug",
+            "configurePreset": "Windows-llvm-Debug",
+            "generators": [
+                "TGZ"
+            ]
+        }
+    ],
     "workflowPresets": [
         {
             "name": "Windows-msvc-Debug",
+            "displayName": "win-msvc-debug",
             "steps": [
                 {
                     "type": "configure",
@@ -251,11 +280,16 @@
                 {
                     "type": "test",
                     "name": "test-Windows-msvc-Debug"
+                },
+                {
+                    "type": "package",
+                    "name": "package-Windows-msvc-Debug"
                 }
             ]
         },
         {
             "name": "Windows-llvm-Debug",
+            "displayName": "win-llvm-debug",
             "steps": [
                 {
                     "type": "configure",
@@ -268,6 +302,10 @@
                 {
                     "type": "test",
                     "name": "test-Windows-llvm-Debug"
+                },
+                {
+                    "type": "package",
+                    "name": "package-Windows-llvm-Debug"
                 }
             ]
         }

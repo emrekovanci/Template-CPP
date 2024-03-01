@@ -14,6 +14,7 @@ set(LIBRARY_SOURCES
 add_library(Core STATIC ${LIBRARY_HEADERS} ${LIBRARY_SOURCES})
 target_include_directories(Core PUBLIC ${PROJECT_SOURCE_DIR}/library/include)
 target_compile_features(Core PUBLIC cxx_std_17)
+install(TARGETS Core)
 
 if (FEATURE_TESTS)
     add_subdirectory(${PROJECT_SOURCE_DIR}/library/test)
