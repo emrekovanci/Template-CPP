@@ -213,27 +213,26 @@
     ],
     "testPresets": [
         {
-            "name": "test-Windows-msvc-Debug",
-            "description": "Enable output and stop on failure",
+            "name": "test-common",
+            "hidden": true,
             "output": {
                 "outputOnFailure": true
             },
             "execution": {
                 "noTestsAction": "error",
                 "stopOnFailure": true
-            },
+            }
+        },
+        {
+            "name": "test-Windows-msvc-Debug",
+            "description": "Enable output and stop on failure",
+            "inherits": "test-common",
             "configurePreset": "Windows-msvc-Debug"
         },
         {
             "name": "test-Windows-llvm-Debug",
             "description": "Enable output and stop on failure",
-            "output": {
-                "outputOnFailure": true
-            },
-            "execution": {
-                "noTestsAction": "error",
-                "stopOnFailure": true
-            },
+            "inherits": "test-common",
             "configurePreset": "Windows-llvm-Debug"
         }
     ],
