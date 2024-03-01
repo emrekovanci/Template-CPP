@@ -108,7 +108,9 @@
             "name": "debug",
             "hidden": true,
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug"
+                "CMAKE_BUILD_TYPE": "Debug",
+                "VCPKG_MANIFEST_FEATURES": "test",
+                "FEATURE_TESTS": true
             }
         },
         {

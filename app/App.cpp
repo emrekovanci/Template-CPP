@@ -1,9 +1,11 @@
 #include <Core/Lib.hpp>
 
+#include <iostream>
+
 int main()
 {
     Lib lib;
-    lib.displayName();
+    std::cout << lib.getName();
 
     return 0;
 }

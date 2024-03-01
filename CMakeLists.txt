@@ -8,5 +8,9 @@ project(
     LANGUAGES CXX
 )
 
+if(FEATURE_TESTS)
+    enable_testing()
+endif()
+
 add_subdirectory(library)
 add_subdirectory(app)
