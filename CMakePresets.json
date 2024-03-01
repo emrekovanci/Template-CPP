@@ -33,7 +33,7 @@
                 "value": "x64",
                 "strategy": "external"
             },
-            "toolset":{
+            "toolset": {
                 "value": "host=x64",
                 "strategy": "external"
             }
@@ -122,35 +122,59 @@
         },
         {
             "name": "Windows-msvc-Debug",
-            "inherits": ["confs-windows-msvc-common", "debug"]
+            "inherits": [
+                "confs-windows-msvc-common",
+                "debug"
+            ]
         },
         {
             "name": "Windows-msvc-Release",
-            "inherits": ["confs-windows-msvc-common", "release"]
+            "inherits": [
+                "confs-windows-msvc-common",
+                "release"
+            ]
         },
         {
             "name": "Windows-llvm-Debug",
-            "inherits": ["confs-windows-llvm-common", "debug"]
+            "inherits": [
+                "confs-windows-llvm-common",
+                "debug"
+            ]
         },
         {
             "name": "Windows-llvm-Release",
-            "inherits": ["confs-windows-llvm-common", "release"]
+            "inherits": [
+                "confs-windows-llvm-common",
+                "release"
+            ]
         },
         {
             "name": "llvm-Debug",
-            "inherits": ["confs-linux-llvm-common", "debug"]
+            "inherits": [
+                "confs-linux-llvm-common",
+                "debug"
+            ]
         },
         {
             "name": "llvm-Release",
-            "inherits": ["confs-linux-llvm-common", "release"]
+            "inherits": [
+                "confs-linux-llvm-common",
+                "release"
+            ]
         },
         {
             "name": "gcc-Debug",
-            "inherits": ["confs-linux-gcc-common", "debug"]
+            "inherits": [
+                "confs-linux-gcc-common",
+                "debug"
+            ]
         },
         {
             "name": "gcc-Release",
-            "inherits": ["confs-linux-gcc-common", "release"]
+            "inherits": [
+                "confs-linux-gcc-common",
+                "release"
+            ]
         }
     ],
     "buildPresets": [
@@ -185,6 +209,68 @@
         {
             "name": "gcc-Release",
             "configurePreset": "gcc-Release"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "test-Windows-msvc-Debug",
+            "description": "Enable output and stop on failure",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": true
+            },
+            "configurePreset": "Windows-msvc-Debug"
+        },
+        {
+            "name": "test-Windows-llvm-Debug",
+            "description": "Enable output and stop on failure",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": true
+            },
+            "configurePreset": "Windows-llvm-Debug"
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "Windows-msvc-Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "Windows-msvc-Debug"
+                },
+                {
+                    "type": "build",
+                    "name": "Windows-msvc-Debug"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Windows-msvc-Debug"
+                }
+            ]
+        },
+        {
+            "name": "Windows-llvm-Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "Windows-llvm-Debug"
+                },
+                {
+                    "type": "build",
+                    "name": "Windows-llvm-Debug"
+                },
+                {
+                    "type": "test",
+                    "name": "test-Windows-llvm-Debug"
+                }
+            ]
         }
     ]
 }
