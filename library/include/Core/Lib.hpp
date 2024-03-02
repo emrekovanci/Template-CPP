@@ -6,7 +6,7 @@ struct Lib
 {
     Lib();
 
-    void displayName() const;
+    std::string getName() const;
 
 private:
     std::string m_name;
