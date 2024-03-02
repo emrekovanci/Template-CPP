@@ -72,6 +72,15 @@ jobs:
           else
             cmake --build --preset=${{ matrix.compiler }}-${{ matrix.build_type }}
           fi
+      - name: Test
+        if: ${{ matrix.build_type == 'Debug' }}
+        shell: bash
+        run: |
+          if [ "${{ runner.os }}" == "Windows" ]; then
+            ctest --preset=test-Windows-${{ matrix.compiler }}-${{ matrix.build_type }}
+          else
+            ctest --preset=test-${{ matrix.compiler }}-${{ matrix.build_type }}
+          fi
 
   format:
     name: Formatting

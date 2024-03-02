@@ -234,16 +234,26 @@
         {
             "name": "test-Windows-msvc-Debug",
             "displayName": "test-win-msvc-debug",
-            "description": "Enable output and stop on failure",
             "inherits": "test-common",
             "configurePreset": "Windows-msvc-Debug"
         },
         {
             "name": "test-Windows-llvm-Debug",
             "displayName": "test-win-llvm-debug",
-            "description": "Enable output and stop on failure",
             "inherits": "test-common",
             "configurePreset": "Windows-llvm-Debug"
+        },
+        {
+            "name": "test-llvm-Debug",
+            "displayName": "test-llvm-debug",
+            "inherits": "test-common",
+            "configurePreset": "llvm-Debug"
+        },
+        {
+            "name": "test-gcc-Debug",
+            "displayName": "test-gcc-debug",
+            "inherits": "test-common",
+            "configurePreset": "gcc-Debug"
         }
     ],
     "packagePresets": [
