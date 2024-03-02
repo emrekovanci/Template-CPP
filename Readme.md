@@ -22,12 +22,20 @@ If you're building with Ninja and the Visual C++ toolset on Windows, set the env
 /path/to/vcvarsall.bat x64
 ```
 
-### Configure & Build
+### Configure & Build & Test
 ```
 cmake --preset=<configurePreset-name>
 ```
 ```
 cmake --build --preset=<buildPreset-name>
+```
+```
+ctest --preset=<testPreset-name>
+```
+
+### Workflow
+```
+cmake --workflow --preset=<workflowPreset-name>
 ```
 
 [1]: https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html
