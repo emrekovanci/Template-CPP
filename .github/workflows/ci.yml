@@ -25,6 +25,9 @@ jobs:
         build_type:
           - Debug
           - Release
+        config:
+          - { name: Shared, flags: -DBUILD_SHARED_LIBS=TRUE }
+          - { name: Static, flags: -DBUILD_SHARED_LIBS=FALSE }
 
         exclude:
           - os: windows-2022
@@ -59,7 +62,7 @@ jobs:
         shell: bash
         run: |
           if [ "${{ runner.os }}" == "Windows" ]; then
-            cmake --preset=Windows-${{ matrix.compiler }}-${{ matrix.build_type }}
+            cmake --preset=Windows-${{ matrix.compiler }}-${{ matrix.build_type }} -DBUILD_SHARED_LIBS=${{ matrix.config.flags }}
           else
             cmake --preset=${{ matrix.compiler }}-${{ matrix.build_type }}
           fi
