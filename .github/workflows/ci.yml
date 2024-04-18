@@ -75,6 +75,7 @@ jobs:
           else
             cmake --build --preset=${{ matrix.compiler }}-${{ matrix.build_type }}
           fi
+
       - name: Test
         if: ${{ matrix.build_type == 'Debug' }}
         shell: bash
