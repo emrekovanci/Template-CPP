@@ -62,7 +62,7 @@ jobs:
         shell: bash
         run: |
           if [ "${{ runner.os }}" == "Windows" ]; then
-            cmake --preset=Windows-${{ matrix.compiler }}-${{ matrix.build_type }} -DBUILD_SHARED_LIBS=${{ matrix.config.flags }}
+            cmake --preset=Windows-${{ matrix.compiler }}-${{ matrix.build_type }} ${{ matrix.config.flags }}
           else
             cmake --preset=${{ matrix.compiler }}-${{ matrix.build_type }}
           fi
