@@ -43,7 +43,7 @@ jobs:
           - os: windows-2022
             compiler: msvc
             build_type: Debug
-            config: { name: Shared, flags: -DBUILD_SHARED_LIBS=FALSE }
+            config: { name: Static, flags: -DBUILD_SHARED_LIBS=FALSE }
           - os: windows-2022
             compiler: msvc
             build_type: Release
@@ -51,7 +51,7 @@ jobs:
           - os: windows-2022
             compiler: msvc
             build_type: Release
-            config: { name: Shared, flags: -DBUILD_SHARED_LIBS=FALSE }
+            config: { name: Static, flags: -DBUILD_SHARED_LIBS=FALSE }
 
     steps:
       - name: Checkout Code
