@@ -64,7 +64,7 @@ jobs:
           if [ "${{ runner.os }}" == "Windows" ]; then
             cmake --preset=Windows-${{ matrix.compiler }}-${{ matrix.build_type }} ${{ matrix.config.flags }}
           else
-            cmake --preset=${{ matrix.compiler }}-${{ matrix.build_type }}
+            cmake --preset=${{ matrix.compiler }}-${{ matrix.build_type }} ${{ matrix.config.flags }}
           fi
 
       - name: CMake Build
