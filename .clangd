@@ -9,6 +9,10 @@ CompileFlags:
     # because CompilationDatabase field in .clangd doesn't support multiple folders to search
   CompilationDatabase: .vscode
 
+Style:
+  FullyQualifiedNamespaces:
+    - std
+
 InlayHints:
   Enabled: No
   BlockEnd: Yes
