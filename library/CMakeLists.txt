@@ -32,12 +32,12 @@ if(NOT BUILD_SHARED_LIBS)
     target_compile_definitions(Core PUBLIC CORE_STATIC_DEFINE)
 endif()
 
-set_target_properties(Core PROPERTIES
-    CXX_VISIBILITY_PRESET hidden
-    VISIBILITY_INLINES_HIDDEN YES
-    VERSION "${PROJECT_VERSION}"
-    SOVERSION "${PROJECT_VERSION_MAJOR}"
-)
+## set_target_properties(Core PROPERTIES
+##    CXX_VISIBILITY_PRESET hidden
+##    VISIBILITY_INLINES_HIDDEN YES
+##    VERSION "${PROJECT_VERSION}"
+##    SOVERSION "${PROJECT_VERSION_MAJOR}"
+## )
 
 install(TARGETS Core)
 
