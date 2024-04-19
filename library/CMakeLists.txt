@@ -10,7 +10,7 @@ set(LIBRARY_SOURCES
     ${SRCROOT}/Lib.cpp
 )
 
-# Define library and its properties
+# ---- Define library ----
 add_library(Core ${LIBRARY_HEADERS} ${LIBRARY_SOURCES})
 target_include_directories(Core PUBLIC ${PROJECT_SOURCE_DIR}/library/include)
 target_compile_features(Core PUBLIC cxx_std_17)
