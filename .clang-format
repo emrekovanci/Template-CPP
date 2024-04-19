@@ -22,12 +22,12 @@ UseTab: Never
 
 # Alignment
 AlignAfterOpenBracket: BlockIndent
-AlignConsecutiveAssignments: false
+AlignConsecutiveAssignments: None
 AlignConsecutiveBitFields: Consecutive
-AlignConsecutiveDeclarations: false
+AlignConsecutiveDeclarations: None
 AlignConsecutiveMacros: Consecutive
 AlignEscapedNewlines: Left
-AlignOperands: false
+AlignOperands: DontAlign
 AlignTrailingComments:
   Kind: Always
   OverEmptyLines: 1
@@ -90,7 +90,7 @@ IncludeCategories:
   # C++ standard headers
   - Priority: 4
     Regex: '<[[:alnum:]_-]+>'
-SortIncludes: true
+SortIncludes: Never
 SortUsingDeclarations: true
 
 # Pointer & Reference Alignment
@@ -117,7 +117,7 @@ SpaceBeforeSquareBrackets: false
 SpaceInEmptyBlock: false
 SpaceInEmptyParentheses: false
 SpacesBeforeTrailingComments: 1
-SpacesInAngles: false
+SpacesInAngles: Never
 SpacesInCStyleCastParentheses: false
 SpacesInConditionalStatement: false
 SpacesInContainerLiterals: false
