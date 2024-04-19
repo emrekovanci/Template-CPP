@@ -5,6 +5,14 @@ root = true
 [*]
 end_of_line = lf
 insert_final_newline = true
+
+[*{c,cpp,cxx,h,hpp,hxx,cmake}]
+charset = utf-8
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+[CMakeLists.txt]
 charset = utf-8
 indent_style = space
 indent_size = 4
