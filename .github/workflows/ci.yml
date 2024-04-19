@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: ${{ matrix.os }} ${{ matrix.compiler }} ${{ matrix.build_type }}
+    name: ${{ matrix.os }} ${{ matrix.compiler }} ${{ matrix.build_type }} ${{ matrix.config.name }}
     if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 120
@@ -25,6 +25,9 @@ jobs:
         build_type:
           - Debug
           - Release
+        config:
+          - { name: Shared, flags: -DBUILD_SHARED_LIBS=TRUE }
+          - { name: Static, flags: -DBUILD_SHARED_LIBS=FALSE }
 
         exclude:
           - os: windows-2022
@@ -36,9 +39,19 @@ jobs:
           - os: windows-2022
             compiler: msvc
             build_type: Debug
+            config: { name: Shared, flags: -DBUILD_SHARED_LIBS=TRUE }
+          - os: windows-2022
+            compiler: msvc
+            build_type: Debug
+            config: { name: Static, flags: -DBUILD_SHARED_LIBS=FALSE }
           - os: windows-2022
             compiler: msvc
             build_type: Release
+            config: { name: Shared, flags: -DBUILD_SHARED_LIBS=TRUE }
+          - os: windows-2022
+            compiler: msvc
+            build_type: Release
+            config: { name: Static, flags: -DBUILD_SHARED_LIBS=FALSE }
 
     steps:
       - name: Checkout Code
@@ -59,9 +72,9 @@ jobs:
         shell: bash
         run: |
           if [ "${{ runner.os }}" == "Windows" ]; then
-            cmake --preset=Windows-${{ matrix.compiler }}-${{ matrix.build_type }}
+            cmake --preset=Windows-${{ matrix.compiler }}-${{ matrix.build_type }} ${{ matrix.config.flags }}
           else
-            cmake --preset=${{ matrix.compiler }}-${{ matrix.build_type }}
+            cmake --preset=${{ matrix.compiler }}-${{ matrix.build_type }} ${{ matrix.config.flags }}
           fi
 
       - name: CMake Build
@@ -72,6 +85,16 @@ jobs:
           else
             cmake --build --preset=${{ matrix.compiler }}-${{ matrix.build_type }}
           fi
+
+      - name: Install
+        shell: bash
+        run: |
+          if [ "${{ runner.os }}" == "Windows" ]; then
+            cmake --install out/build/Windows-${{ matrix.compiler }}-${{ matrix.build_type }} --prefix prefix
+          else
+            cmake --install out/build/${{ matrix.compiler }}-${{ matrix.build_type }} --prefix prefix
+          fi
+
       - name: Test
         if: ${{ matrix.build_type == 'Debug' }}
         shell: bash

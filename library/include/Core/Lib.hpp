@@ -1,8 +1,10 @@
 #pragma once
 
+#include "Core_Export.h"
+
 #include <string>
 
-struct Lib
+struct CORE_API Lib
 {
     Lib();
 
