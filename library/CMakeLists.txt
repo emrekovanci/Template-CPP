@@ -44,7 +44,3 @@ install(TARGETS Core)
 if (FEATURE_TESTS)
     add_subdirectory(${PROJECT_SOURCE_DIR}/library/test)
 endif()
-
-# Group headers and sources for IDE
-source_group(TREE ${INCROOT} PREFIX "Headers" FILES ${LIBRARY_HEADERS})
-source_group(TREE ${SRCROOT} PREFIX "Sources" FILES ${LIBRARY_SOURCES})
