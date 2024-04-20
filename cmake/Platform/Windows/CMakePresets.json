@@ -101,19 +101,65 @@
     "buildPresets": [
         {
             "name": "windows-vs2022",
-            "configurePreset": "windows-vs2022"
+            "configurePreset": "windows-vs2022",
+            "inherits": [
+                "host-windows"
+            ]
         },
         {
             "name": "windows-vs2022-clangcl",
-            "configurePreset": "windows-vs2022-clangcl"
+            "configurePreset": "windows-vs2022-clangcl",
+            "inherits": [
+                "host-windows"
+            ]
         },
         {
             "name": "windows-ninja",
-            "configurePreset": "windows-ninja"
+            "configurePreset": "windows-ninja",
+            "inherits": [
+                "host-windows"
+            ]
         },
         {
             "name": "windows-ninja-clangcl",
-            "configurePreset": "windows-ninja-clangcl"
+            "configurePreset": "windows-ninja-clangcl",
+            "inherits": [
+                "host-windows"
+            ]
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "windows-vs2022",
+            "configurePreset": "windows-vs2022",
+            "inherits": [
+                "test-default",
+                "host-windows"
+            ]
+        },
+        {
+            "name": "windows-vs2022-clangcl",
+            "configurePreset": "windows-vs2022-clangcl",
+            "inherits": [
+                "test-default",
+                "host-windows"
+            ]
+        },
+        {
+            "name": "windows-ninja",
+            "configurePreset": "windows-ninja",
+            "inherits": [
+                "test-default",
+                "host-windows"
+            ]
+        },
+        {
+            "name": "windows-ninja-clangcl",
+            "configurePreset": "windows-ninja-clangcl",
+            "inherits": [
+                "test-default",
+                "host-windows"
+            ]
         }
     ]
 }

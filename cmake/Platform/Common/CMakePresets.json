@@ -186,6 +186,109 @@
             "cacheVariables": {
                 "CMAKE_CXX_FLAGS": "-fstack-protector-strong -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wcast-qual -Wformat=2 -Wundef -Werror=float-equal -Wshadow -Wcast-align -Wunused -Wnull-dereference -Wdouble-promotion -Wimplicit-fallthrough -Wextra-semi -Woverloaded-virtual -Wnon-virtual-dtor -Wold-style-cast"
             }
-          }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "host-windows",
+            "displayName": "Host OS - Windows",
+            "description": "Specifies Windows host condition for build preset",
+            "hidden": true,
+            "configurePreset": "default",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "host-linux",
+            "displayName": "Host OS - Linux",
+            "description": "Specifies Linux host condition for build preset",
+            "hidden": true,
+            "configurePreset": "default",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            }
+        },
+        {
+            "name": "host-mac",
+            "displayName": "Host OS - Mac",
+            "description": "Specifies Mac host condition for build preset",
+            "hidden": true,
+            "configurePreset": "default",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Darwin"
+            }
+        },
+        {
+            "name": "host-windows-linux-mac",
+            "displayName": "Host OS - Any",
+            "description": "Allows Windows, Linux or Mac to be used for host condition for build preset",
+            "hidden": true,
+            "configurePreset": "default",
+            "condition": {
+                "type": "inList",
+                "string": "${hostSystemName}",
+                "list": [
+                  "Darwin",
+                  "Linux",
+                  "Windows"
+                ]
+            }
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "test-default",
+            "hidden": true,
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": true
+            }
+        },
+        {
+            "name": "host-windows",
+            "displayName": "Host OS - Windows",
+            "description": "Specifies Windows host condition for test preset",
+            "hidden": true,
+            "configurePreset": "default",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "host-linux",
+            "displayName": "Host OS - Linux",
+            "description": "Specifies Linux host condition for test preset",
+            "hidden": true,
+            "configurePreset": "default",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            }
+        },
+        {
+            "name": "host-mac",
+            "displayName": "Host OS - Mac",
+            "description": "Specifies Mac host condition for test preset",
+            "hidden": true,
+            "configurePreset": "default",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Darwin"
+            }
+        }
     ]
 }

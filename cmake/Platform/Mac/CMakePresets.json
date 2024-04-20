@@ -27,7 +27,20 @@
     "buildPresets": [
         {
             "name": "mac-ninja-clang",
-            "configurePreset": "mac-ninja-clang"
+            "configurePreset": "mac-ninja-clang",
+            "inherits": [
+                "host-mac"
+            ]
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "mac-ninja-clang",
+            "configurePreset": "mac-ninja-clang",
+            "inherits": [
+                "test-default",
+                "host-mac"
+            ]
         }
     ]
 }

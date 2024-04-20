@@ -19,6 +19,8 @@ jobs:
 
     strategy:
       fail-fast: false
+
+      # https://github.com/actions/runner-images
       matrix:
         platform:
           - { os: windows-2022, generator: vs2022, compiler: msvc, preset: windows-vs2022 }
@@ -54,11 +56,15 @@ jobs:
         env:
           VCPKG_ROOT: '~/vcpkg'
         shell: bash
-        run: cmake --preset=${{ matrix.platform.preset }} ${{ matrix.config.flags }} ${{ matrix.type.flags }}
+        run: cmake --preset=${{ matrix.platform.preset }} ${{ matrix.config.flags }} ${{ matrix.type.flags }} -DVCPKG_MANIFEST_FEATURES=tests -DFEATURE_TESTS=ON
 
       - name: CMake Build
         shell: bash
         run: cmake --build --preset=${{ matrix.platform.preset }}
+
+      - name: Test
+        shell: bash
+        run: ctest --preset=${{ matrix.platform.preset }}
 
   format:
     name: Formatting

@@ -41,11 +41,35 @@
     "buildPresets": [
         {
             "name": "linux-ninja-gcc",
-            "configurePreset": "linux-ninja-gcc"
+            "configurePreset": "linux-ninja-gcc",
+            "inherits": [
+                "host-linux"
+            ]
         },
         {
             "name": "linux-ninja-clang",
-            "configurePreset": "linux-ninja-clang"
+            "configurePreset": "linux-ninja-clang",
+            "inherits": [
+                "host-linux"
+            ]
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "linux-ninja-gcc",
+            "configurePreset": "linux-ninja-gcc",
+            "inherits": [
+                "test-default",
+                "host-linux"
+            ]
+        },
+        {
+            "name": "linux-ninja-clang",
+            "configurePreset": "linux-ninja-clang",
+            "inherits": [
+                "test-default",
+                "host-linux"
+            ]
         }
     ]
 }
