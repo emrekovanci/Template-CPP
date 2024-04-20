@@ -1,3 +1,4 @@
+---
 Checks: >
   -*,
   bugprone-*,
@@ -28,3 +29,4 @@ CheckOptions:
 HeaderFilterRegex: '^.*/(app|library)/.*(h|hpp)$'
 WarningsAsErrors: '*'
 UseColor: true
+...
