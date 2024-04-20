@@ -64,7 +64,7 @@ jobs:
 
       - name: Test
         shell: bash
-        run: ctest --preset=${{ matrix.platform.preset }}
+        run: ctest --preset=${{ matrix.platform.preset }} -C ${{ matrix.type.name }}
 
   format:
     name: Formatting
