@@ -11,7 +11,30 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  lint:
+    runs-on: ubuntu-22.04
+
+    env:
+      CLANG_FORMAT_VERSION: 17
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Clang-Format
+        uses: aminya/setup-cpp@v1
+        with:
+          clangformat: ${{ env.CLANG_FORMAT_VERSION }}
+
+      - name: Format Code
+        run: cmake -DCLANG_FORMAT_EXECUTABLE=clang-format-${{ env.CLANG_FORMAT_VERSION }} -P cmake/Format.cmake
+
+      - name: Check Formatting
+        run: git diff --color --exit-code
+
+  test:
+    needs: [lint]
+
     name: ${{ matrix.platform.os }} ${{ matrix.platform.generator }} ${{ matrix.platform.compiler }} ${{ matrix.config.name }} ${{ matrix.type.name }}
     if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     runs-on: ${{ matrix.platform.os }}
@@ -65,27 +88,3 @@ jobs:
       - name: Test
         shell: bash
         run: ctest --preset=${{ matrix.platform.preset }} -C ${{ matrix.type.name }}
-
-  format:
-    name: Formatting
-    runs-on: ubuntu-22.04
-    env:
-      CLANG_FORMAT_VERSION: 17
-
-    strategy:
-      fail-fast: false
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Install Clang-Format
-        uses: aminya/setup-cpp@v1
-        with:
-          clangformat: ${{ env.CLANG_FORMAT_VERSION }}
-
-      - name: Format Code
-        run: cmake -DCLANG_FORMAT_EXECUTABLE=clang-format-${{ env.CLANG_FORMAT_VERSION }} -P cmake/Format.cmake
-
-      - name: Check Formatting
-        run: git diff --color --exit-code
