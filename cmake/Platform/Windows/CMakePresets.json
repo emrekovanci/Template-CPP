@@ -19,7 +19,7 @@
                 "cpp-standard",
                 "vs2022",
                 "msvc",
-                "msvc-flags",
+                "flags-msvc",
                 "vcpkg"
             ],
             "architecture": {
@@ -41,7 +41,7 @@
                 "cpp-standard",
                 "vs2022",
                 "clang-cl",
-                "llvm-flags",
+                "flags-llvm",
                 "vcpkg"
             ],
             "architecture": {
@@ -63,7 +63,7 @@
                 "cpp-standard",
                 "ninja",
                 "msvc",
-                "msvc-flags",
+                "flags-msvc",
                 "vcpkg"
             ],
             "architecture": {
@@ -85,7 +85,7 @@
                 "cpp-standard",
                 "ninja",
                 "clang-cl",
-                "llvm-flags",
+                "flags-llvm",
                 "vcpkg"
             ],
             "architecture": {

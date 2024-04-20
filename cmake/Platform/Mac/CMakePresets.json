@@ -4,5 +4,11 @@
         "major": 3,
         "minor": 26,
         "patch": 0
-    }
+    },
+    "include": [
+        "../Common/CMakePresets.json"
+    ],
+    "configurePresets": [
+        
+    ]
 }
