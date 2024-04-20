@@ -9,6 +9,25 @@
         "../Common/CMakePresets.json"
     ],
     "configurePresets": [
-        
+        {
+            "name": "mac-ninja-clang",
+            "displayName": "Mac Ninja Generator + Clang++",
+            "description": "Configure Mac to use the Ninja generator and the Clang++ compiler",
+            "binaryDir": "${sourceDir}/build/mac_ninja_clang",
+            "inherits": [
+                "host-mac",
+                "cpp-standard",
+                "ninja",
+                "clang++",
+                "flags-appleclang",
+                "vcpkg"
+            ]
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "mac-ninja-clang",
+            "configurePreset": "mac-ninja-clang"
+        }
     ]
 }
