@@ -54,7 +54,7 @@ jobs:
         env:
           VCPKG_ROOT: '~/vcpkg'
         shell: bash
-        run: cmake --preset=${{ matrix.platform.preset }}
+        run: cmake --preset=${{ matrix.platform.preset }} ${{ matrix.config.flags }} ${{ matrix.type.flags }}
 
       - name: CMake Build
         shell: bash
