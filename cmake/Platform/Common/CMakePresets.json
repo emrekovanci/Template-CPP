@@ -91,7 +91,7 @@
                   "Linux",
                   "Windows"
                 ]
-              }
+            }
         },
         {
             "name": "vs2022",
@@ -194,7 +194,6 @@
             "displayName": "Host OS - Windows",
             "description": "Specifies Windows host condition for build preset",
             "hidden": true,
-            "configurePreset": "default",
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
@@ -206,7 +205,6 @@
             "displayName": "Host OS - Linux",
             "description": "Specifies Linux host condition for build preset",
             "hidden": true,
-            "configurePreset": "default",
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
@@ -218,7 +216,6 @@
             "displayName": "Host OS - Mac",
             "description": "Specifies Mac host condition for build preset",
             "hidden": true,
-            "configurePreset": "default",
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
@@ -230,7 +227,6 @@
             "displayName": "Host OS - Any",
             "description": "Allows Windows, Linux or Mac to be used for host condition for build preset",
             "hidden": true,
-            "configurePreset": "default",
             "condition": {
                 "type": "inList",
                 "string": "${hostSystemName}",
@@ -259,7 +255,6 @@
             "displayName": "Host OS - Windows",
             "description": "Specifies Windows host condition for test preset",
             "hidden": true,
-            "configurePreset": "default",
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
@@ -271,7 +266,6 @@
             "displayName": "Host OS - Linux",
             "description": "Specifies Linux host condition for test preset",
             "hidden": true,
-            "configurePreset": "default",
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
@@ -283,7 +277,6 @@
             "displayName": "Host OS - Mac",
             "description": "Specifies Mac host condition for test preset",
             "hidden": true,
-            "configurePreset": "default",
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
