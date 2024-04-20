@@ -60,7 +60,7 @@ jobs:
 
       - name: CMake Build
         shell: bash
-        run: cmake --build --preset=${{ matrix.platform.preset }}
+        run: cmake --build --preset=${{ matrix.platform.preset }} --config ${{ matrix.type.name }}
 
       - name: Test
         shell: bash
