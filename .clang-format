@@ -46,7 +46,7 @@ AllowShortLambdasOnASingleLine: All
 # Break
 AlwaysBreakAfterReturnType: None
 AlwaysBreakBeforeMultilineStrings: true
-BreakTemplateDeclarations: Yes
+AlwaysBreakTemplateDeclarations: Yes
 BreakBeforeConceptDeclarations: true
 BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: AfterColon
