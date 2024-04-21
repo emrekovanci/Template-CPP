@@ -11,4 +11,4 @@ target_compile_features(CoreTests PRIVATE cxx_std_17)
 
 # ---- Tests ----
 
-catch_discover_tests(CoreTests WORKING_DIRECTORY "$<TARGET_FILE_DIR:Core>")
+catch_discover_tests(CoreTests WORKING_DIRECTORY $<TARGET_FILE_DIR:Core>)
