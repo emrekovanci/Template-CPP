@@ -10,10 +10,6 @@ project(
     LANGUAGES CXX
 )
 
-if (CMAKE_VERSION VERSION_GREATER 3.24)
-    cmake_policy(SET CMP0142 NEW)
-endif()
-
 if(FEATURE_TESTS)
     enable_testing()
     find_package(Catch2 REQUIRED)
