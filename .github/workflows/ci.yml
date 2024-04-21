@@ -44,6 +44,10 @@ jobs:
         if: always()
         run: cmake -P cmake/CodeSpell.cmake
 
+      - name: Format Vcpkg.json
+        if: always()
+        run: vcpkg format-manifest ./vcpkg.json
+
   test:
     needs: [lint]
 
