@@ -31,6 +31,9 @@ jobs:
         with:
           python-version: "3.8"
 
+      - name: Install codespell
+        run: pip3 install codespell
+
       - name: Format Code
         run: cmake -DCLANG_FORMAT_EXECUTABLE=clang-format-${{ env.CLANG_FORMAT_VERSION }} -P cmake/Format.cmake
 
