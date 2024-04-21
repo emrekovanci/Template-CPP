@@ -1,3 +1,5 @@
+cmake_minimum_required(VERSION 3.26)
+
 # ---- Check executable exists ----
 
 if(NOT EXISTS ${CLANG_FORMAT_EXECUTABLE})

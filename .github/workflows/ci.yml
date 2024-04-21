@@ -21,6 +21,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.8"
+
       - name: Install Clang-Format
         uses: aminya/setup-cpp@v1
         with:
@@ -31,6 +36,9 @@ jobs:
 
       - name: Check Formatting
         run: git diff --color --exit-code
+
+      - name: Spell Check
+        run: cmake -P cmake/CodeSpell.cmake
 
   test:
     needs: [lint]
