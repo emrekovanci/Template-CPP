@@ -96,7 +96,7 @@ jobs:
         env:
           VCPKG_ROOT: '~/vcpkg'
         shell: bash
-        run: cmake --preset="${{ matrix.platform.preset }}" ${{ matrix.config.flags }} ${{ matrix.type.flags }} -DVCPKG_MANIFEST_FEATURES=tests -DFEATURE_TESTS=ON
+        run: cmake --preset=${{ matrix.platform.preset }} ${{ matrix.config.flags }} ${{ matrix.type.flags }} -DVCPKG_MANIFEST_FEATURES=tests -DFEATURE_TESTS=ON
 
       - name: CMake Build
         shell: bash
