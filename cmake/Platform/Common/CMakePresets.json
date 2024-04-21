@@ -111,6 +111,13 @@
             ]
         },
         {
+            "name": "xcode",
+            "displayName": "XCode",
+            "description": "Configure using Xcode generator",
+            "generator": "Xcode",
+            "hidden": true
+        },
+        {
             "name": "msvc",
             "displayName": "MSVC",
             "description": "Use MSVC toolset",
