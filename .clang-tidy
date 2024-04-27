@@ -5,12 +5,14 @@ Checks: >
   -cppcoreguidelines-avoid-magic-numbers,
   -fuchsia-*,
   fuchsia-multiple-inheritance,
+  -hicpp-uppercase-literal-suffix,
   -llvmlibc-*,
   -misc-non-private-member-variables-in-classes,
   -modernize-use-nodiscard,
   -modernize-use-trailing-return-type,
   -readability-identifier-length,
   -readability-magic-numbers,
+  -readability-uppercase-literal-suffix,
 CheckOptions:
   - { key: bugprone-misplaced-widening-cast.CheckImplicitCasts,           value: true }
   - { key: bugprone-sizeof-expression.WarnOnSizeOfIntegerExpression,      value: true }
