@@ -16,6 +16,12 @@
         "build/**": true,
     },
 
+    // [Editor]
+    "[cpp]": {
+        "editor.formatOnSave": true,
+        "editor.semanticHighlighting.enabled": "configuredByTheme"
+    },
+
     // [CMake]
     "cmake.configureOnOpen": false,
     "cmake.configureOnEdit": false,
