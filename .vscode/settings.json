@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+        "*.clang-tidy": "yaml",
+        "*.clang-format": "yaml",
+        "*.clangd": "yaml",
+    },
+    "files.exclude": {
+        ".cache": true,
+        "**/.vs": true,
+        "**/build": true,
+        "**/out": true,
+    },
+    "files.readonlyInclude": {
+        "out/**": true,
+        "build/**": true,
+    },
+}
