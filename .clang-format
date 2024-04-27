@@ -90,7 +90,7 @@ IncludeCategories:
   # C++ standard headers
   - Priority: 4
     Regex: '<[[:alnum:]_-]+>'
-SortIncludes: Never
+SortIncludes: CaseSensitive
 SortUsingDeclarations: true
 
 # Pointer & Reference Alignment
@@ -131,5 +131,4 @@ InsertNewlineAtEOF: true
 # Qualifiers (const, volatile, static, etc)
 QualifierAlignment: Custom
 QualifierOrder: ['static', 'inline', 'constexpr', 'const', 'volatile', 'type']
-
 ...

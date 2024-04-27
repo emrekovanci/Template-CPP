@@ -4,7 +4,7 @@ add_library(Core
     include/Core/Lib.hpp
     src/Core/Lib.cpp
 )
-target_include_directories(Core PUBLIC ${PROJECT_SOURCE_DIR}/library/include)
+target_include_directories(Core PUBLIC "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/library/include>")
 target_compile_features(Core PUBLIC cxx_std_17)
 
 include(GenerateExportHeader)
@@ -34,5 +34,5 @@ set_target_properties(Core PROPERTIES
 install(TARGETS Core)
 
 if (FEATURE_TESTS)
-    add_subdirectory(${PROJECT_SOURCE_DIR}/library/test)
+    add_subdirectory(test)
 endif()

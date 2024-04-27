@@ -1,5 +1,8 @@
 name: ci
 
+permissions:
+  contents: write
+
 on:
   push:
     branches:
@@ -10,114 +13,16 @@ on:
     types: [published]
   workflow_dispatch:
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  VCPKG_FEATURE_FLAGS: dependencygraph
+
 jobs:
-  build:
-    name: ${{ matrix.os }} ${{ matrix.compiler }} ${{ matrix.build_type }} ${{ matrix.config.name }}
-    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 120
-
-    strategy:
-      fail-fast: false
-      matrix:
-        os:
-          - ubuntu-22.04
-          - macos-13
-          - windows-2022
-        compiler:
-          - llvm
-          - gcc
-        build_type:
-          - Debug
-          - Release
-        config:
-          - { name: Shared, flags: -DBUILD_SHARED_LIBS=TRUE }
-          - { name: Static, flags: -DBUILD_SHARED_LIBS=FALSE }
-
-        exclude:
-          - os: windows-2022
-            compiler: gcc
-          - os: macos-13
-            compiler: gcc
-
-        include:
-          - os: windows-2022
-            compiler: msvc
-            build_type: Debug
-            config: { name: Shared, flags: -DBUILD_SHARED_LIBS=TRUE }
-          - os: windows-2022
-            compiler: msvc
-            build_type: Debug
-            config: { name: Static, flags: -DBUILD_SHARED_LIBS=FALSE }
-          - os: windows-2022
-            compiler: msvc
-            build_type: Release
-            config: { name: Shared, flags: -DBUILD_SHARED_LIBS=TRUE }
-          - os: windows-2022
-            compiler: msvc
-            build_type: Release
-            config: { name: Static, flags: -DBUILD_SHARED_LIBS=FALSE }
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Install Cpp Environment
-        uses: aminya/setup-cpp@v1
-        with:
-          compiler: ${{ matrix.compiler }}
-          vcvarsall: ${{ contains(matrix.os, 'windows') }}
-          cmake: true
-          ninja: true
-          vcpkg: true
-
-      - name: CMake Configure
-        env:
-          VCPKG_ROOT: '~/vcpkg'
-        shell: bash
-        run: |
-          if [ "${{ runner.os }}" == "Windows" ]; then
-            cmake --preset=Windows-${{ matrix.compiler }}-${{ matrix.build_type }} ${{ matrix.config.flags }}
-          else
-            cmake --preset=${{ matrix.compiler }}-${{ matrix.build_type }} ${{ matrix.config.flags }}
-          fi
-
-      - name: CMake Build
-        shell: bash
-        run: |
-          if [ "${{ runner.os }}" == "Windows" ]; then
-            cmake --build --preset=Windows-${{ matrix.compiler }}-${{ matrix.build_type }}
-          else
-            cmake --build --preset=${{ matrix.compiler }}-${{ matrix.build_type }}
-          fi
-
-      - name: Install
-        shell: bash
-        run: |
-          if [ "${{ runner.os }}" == "Windows" ]; then
-            cmake --install out/build/Windows-${{ matrix.compiler }}-${{ matrix.build_type }} --prefix prefix
-          else
-            cmake --install out/build/${{ matrix.compiler }}-${{ matrix.build_type }} --prefix prefix
-          fi
-
-      - name: Test
-        if: ${{ matrix.build_type == 'Debug' }}
-        shell: bash
-        run: |
-          if [ "${{ runner.os }}" == "Windows" ]; then
-            ctest --preset=test-Windows-${{ matrix.compiler }}-${{ matrix.build_type }}
-          else
-            ctest --preset=test-${{ matrix.compiler }}-${{ matrix.build_type }}
-          fi
-
-  format:
-    name: Formatting
+  lint:
     runs-on: ubuntu-22.04
+
     env:
       CLANG_FORMAT_VERSION: 17
-
-    strategy:
-      fail-fast: false
 
     steps:
       - name: Checkout Code
@@ -128,8 +33,82 @@ jobs:
         with:
           clangformat: ${{ env.CLANG_FORMAT_VERSION }}
 
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.8"
+
+      - name: Install codespell
+        run: pip3 install codespell
+
       - name: Format Code
         run: cmake -DCLANG_FORMAT_EXECUTABLE=clang-format-${{ env.CLANG_FORMAT_VERSION }} -P cmake/Format.cmake
 
       - name: Check Formatting
         run: git diff --color --exit-code
+
+      - name: Spell Check
+        if: always()
+        run: cmake -P cmake/CodeSpell.cmake
+
+      - name: Format Vcpkg.json
+        if: always()
+        run: vcpkg format-manifest ./vcpkg.json
+
+  test:
+    needs: [lint]
+
+    name: ${{ matrix.platform.os }} ${{ matrix.platform.generator }} ${{ matrix.platform.compiler }} ${{ matrix.config.name }} ${{ matrix.type.name }}
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    runs-on: ${{ matrix.platform.os }}
+    timeout-minutes: 120
+
+    strategy:
+      fail-fast: false
+
+      # https://github.com/actions/runner-images
+      matrix:
+        platform:
+          - { os: windows-2022, generator: vs2022, compiler: msvc, preset: windows-vs2022 }
+          - { os: windows-2022, generator: vs2022, compiler: llvm, preset: windows-vs2022-clangcl }
+          - { os: windows-2022, generator: ninja,  compiler: msvc, preset: windows-ninja }
+          - { os: windows-2022, generator: ninja,  compiler: llvm, preset: windows-ninja-clangcl }
+          - { os: ubuntu-22.04, generator: ninja,  compiler: gcc,  preset: linux-ninja-gcc }
+          - { os: ubuntu-22.04, generator: ninja,  compiler: llvm, preset: linux-ninja-clang }
+          - { os: macos-13,     generator: ninja,  compiler: llvm, preset: mac-ninja-clang }
+          - { os: macos-13,     generator: xcode,  compiler: llvm, preset: mac-xcode-clang }
+        config:
+          - { name: Shared, flags: -DBUILD_SHARED_LIBS=TRUE }
+          - { name: Static, flags: -DBUILD_SHARED_LIBS=FALSE }
+        type:
+          - { name: Debug,   flags: -DCMAKE_BUILD_TYPE=Debug }
+          - { name: Release, flags: -DCMAKE_BUILD_TYPE=Release }
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Cpp Environment
+        uses: aminya/setup-cpp@v1
+        with:
+          compiler: ${{ matrix.platform.compiler }}
+          vcvarsall: ${{ contains(matrix.platform.os, 'windows') }}
+          cmake: true
+          ninja: true
+          vcpkg: true
+          clangtidy: true
+          cppcheck: true
+
+      - name: CMake Configure
+        env:
+          VCPKG_ROOT: '~/vcpkg'
+        shell: bash
+        run: cmake --preset=${{ matrix.platform.preset }} ${{ matrix.config.flags }} ${{ matrix.type.flags }} -DVCPKG_MANIFEST_FEATURES=tests -DFEATURE_TESTS=ON
+
+      - name: CMake Build
+        shell: bash
+        run: cmake --build --preset=${{ matrix.platform.preset }} --config ${{ matrix.type.name }}
+
+      - name: Test
+        shell: bash
+        run: ctest --preset=${{ matrix.platform.preset }} -C ${{ matrix.type.name }}
