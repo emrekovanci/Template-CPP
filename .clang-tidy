@@ -5,6 +5,7 @@ Checks: >
   -cppcoreguidelines-avoid-magic-numbers,
   -fuchsia-*,
   fuchsia-multiple-inheritance,
+  -google-readability-todo,
   -hicpp-uppercase-literal-suffix,
   -llvmlibc-*,
   -misc-non-private-member-variables-in-classes,
