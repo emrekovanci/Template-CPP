@@ -4,6 +4,7 @@
         "*.clang-tidy": "yaml",
         "*.clang-format": "yaml",
         "*.clangd": "yaml",
+        "*.codespellrc": "ini",
     },
     "files.exclude": {
         ".cache": true,
