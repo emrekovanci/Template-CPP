@@ -3,7 +3,7 @@
 
 # Project
 Language: Cpp
-Standard: c++17
+Standard: c++20
 ColumnLimit: 120
 
 # Indentation

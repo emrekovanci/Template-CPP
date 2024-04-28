@@ -5,7 +5,7 @@ add_library(Core
     src/Core/Lib.cpp
 )
 target_include_directories(Core PUBLIC "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/library/include>")
-target_compile_features(Core PUBLIC cxx_std_17)
+target_compile_features(Core PUBLIC cxx_std_20)
 
 include(GenerateExportHeader)
 generate_export_header(Core

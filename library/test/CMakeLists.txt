@@ -7,7 +7,7 @@ set(CMAKE_CATCH_DISCOVER_TESTS_DISCOVERY_MODE PRE_TEST)
 
 add_executable(CoreTests Tests.cpp)
 target_link_libraries(CoreTests PRIVATE Core Catch2::Catch2WithMain)
-target_compile_features(CoreTests PRIVATE cxx_std_17)
+target_compile_features(CoreTests PRIVATE cxx_std_20)
 
 # ---- Tests ----
 
