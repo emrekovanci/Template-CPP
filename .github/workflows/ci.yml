@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     env:
-      CLANG_FORMAT_VERSION: 17
+      CLANG_FORMAT_VERSION: 19
 
     steps:
       - name: Checkout Code
