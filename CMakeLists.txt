@@ -11,6 +11,8 @@ project(
 )
 
 include(cmake/Variables.cmake)
+include(cmake/CompilerWarnings.cmake)
+include(cmake/LinkerFlags.cmake)
 
 if(FEATURE_TESTS)
     enable_testing()
