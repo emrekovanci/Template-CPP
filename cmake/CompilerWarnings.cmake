@@ -57,7 +57,7 @@ function(set_compiler_warnings target)
                     /Zc:throwingNew
                     /EHsc)
         endif()
-    elseif (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
+    elseif (APPLE AND CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
         set(PROJECT_WARNINGS
             -fstack-protector-strong
             -Wall
@@ -112,6 +112,5 @@ function(set_compiler_warnings target)
         message(AUTHOR_WARNING "No compiler warnings set for CXX compiler: '${CMAKE_CXX_COMPILER_ID}'")
     endif()
 
-    message(STATUS "Detected CXX Compiler ID: ${CMAKE_CXX_COMPILER_ID}")
     target_compile_options(${target} PRIVATE ${PROJECT_WARNINGS})
 endfunction()
