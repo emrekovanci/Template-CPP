@@ -1,7 +1,7 @@
 function(set_linker_flags target)
     if (MSVC)
         set(PROJECT_LINK_OPTIONS /machine:x64 /guard:cf)
-    elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         set(PROJECT_LINK_OPTIONS -Wl,--allow-shlib-undefined,--as-needed,-z,noexecstack,-z,relro,-z,now,-z,nodlopen)
     endif()
 
