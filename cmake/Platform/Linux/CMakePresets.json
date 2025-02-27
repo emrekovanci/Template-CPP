@@ -19,7 +19,6 @@
                 "cpp-standard",
                 "ninja",
                 "gcc",
-                "flags-gcc-clang",
                 "vcpkg"
             ]
         },
@@ -33,7 +32,6 @@
                 "cpp-standard",
                 "ninja",
                 "clang++",
-                "flags-gcc-clang",
                 "vcpkg"
             ]
         }
