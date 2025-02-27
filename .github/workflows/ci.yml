@@ -8,7 +8,6 @@ on:
     branches:
       - master
       - develop
-  pull_request:
   release:
     types: [published]
   workflow_dispatch:
@@ -19,10 +18,10 @@ env:
 
 jobs:
   lint:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     env:
-      CLANG_FORMAT_VERSION: 17
+      CLANG_FORMAT_VERSION: 19
 
     steps:
       - name: Checkout Code
@@ -73,8 +72,8 @@ jobs:
           - { os: windows-2022, generator: vs2022, compiler: llvm, preset: windows-vs2022-clangcl }
           - { os: windows-2022, generator: ninja,  compiler: msvc, preset: windows-ninja }
           - { os: windows-2022, generator: ninja,  compiler: llvm, preset: windows-ninja-clangcl }
-          - { os: ubuntu-22.04, generator: ninja,  compiler: gcc,  preset: linux-ninja-gcc }
-          - { os: ubuntu-22.04, generator: ninja,  compiler: llvm, preset: linux-ninja-clang }
+          - { os: ubuntu-24.04, generator: ninja,  compiler: gcc,  preset: linux-ninja-gcc }
+          - { os: ubuntu-24.04, generator: ninja,  compiler: llvm, preset: linux-ninja-clang }
           - { os: macos-13,     generator: ninja,  compiler: llvm, preset: mac-ninja-clang }
           - { os: macos-13,     generator: xcode,  compiler: llvm, preset: mac-xcode-clang }
         config:
@@ -103,7 +102,7 @@ jobs:
         env:
           VCPKG_ROOT: '~/vcpkg'
         shell: bash
-        run: cmake --preset=${{ matrix.platform.preset }} ${{ matrix.config.flags }} ${{ matrix.type.flags }} -DVCPKG_MANIFEST_FEATURES=tests -DFEATURE_TESTS=ON
+        run: cmake --preset=${{ matrix.platform.preset }} ${{ matrix.config.flags }} ${{ matrix.type.flags }} -DFEATURE_TESTS=ON
 
       - name: CMake Build
         shell: bash

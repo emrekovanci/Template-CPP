@@ -10,7 +10,7 @@ Style:
     - std
 
 InlayHints:
-  Enabled: No
+  Enabled: Yes
   BlockEnd: Yes
   Designators: Yes
   ParameterNames: Yes

@@ -1,5 +1,5 @@
 ---
-# .clang-format 16
+# .clang-format 19
 
 # Project
 Language: Cpp
@@ -72,7 +72,10 @@ NamespaceIndentation: All
 
 # Empty lines
 EmptyLineBeforeAccessModifier: Always
-KeepEmptyLinesAtTheStartOfBlocks: true
+KeepEmptyLines:
+  AtEndOfFile: false
+  AtStartOfBlock: false
+  AtStartOfFile: false
 MaxEmptyLinesToKeep: 1
 
 # Sorting
