@@ -11,6 +11,7 @@ project(
     LANGUAGES CXX
 )
 
+include(GNUInstallDirs)
 include(cmake/CompilerWarnings.cmake)
 include(cmake/LinkerFlags.cmake)
 
