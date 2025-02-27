@@ -1,6 +1,6 @@
 function(set_compiler_warnings target)
-    if (MSVC)
-        if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    if(MSVC)
+        if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
             set(PROJECT_WARNINGS
                 -Wall
                 -Wextra
@@ -57,7 +57,7 @@ function(set_compiler_warnings target)
                     /Zc:throwingNew
                     /EHsc)
         endif()
-    elseif (APPLE AND CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    elseif(APPLE AND CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
         set(PROJECT_WARNINGS
             -fstack-protector-strong
             -Wall
@@ -80,7 +80,7 @@ function(set_compiler_warnings target)
             -Wnon-virtual-dtor
             -Wold-style-cast
         )
-    elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         set(PROJECT_WARNINGS
             -U_FORTIFY_SOURCE
             -D_FORTIFY_SOURCE=3

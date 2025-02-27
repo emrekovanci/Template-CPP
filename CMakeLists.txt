@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.26)
 
 include(cmake/PreventInSourceBuilds.cmake)
+include(cmake/Features.cmake)
 
 project(
     Template-CPP
@@ -10,7 +11,6 @@ project(
     LANGUAGES CXX
 )
 
-include(cmake/Variables.cmake)
 include(cmake/CompilerWarnings.cmake)
 include(cmake/LinkerFlags.cmake)
 
