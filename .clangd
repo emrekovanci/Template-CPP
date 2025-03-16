@@ -18,7 +18,7 @@ InlayHints:
   TypeNameLimit: 24
 
 Hover:
-  ShowAKA: Yes
+  ShowAKA: No
 
 Diagnostics:
   UnusedIncludes: Strict
