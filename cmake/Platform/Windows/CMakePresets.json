@@ -11,7 +11,6 @@
     "configurePresets": [
         {
             "name": "windows-vs2022",
-            "displayName": "Windows Visual Studio 2022 Generator + MSVC",
             "description": "Configure Windows to use the VS2022 generator",
             "binaryDir": "${sourceDir}/build/windows_vs2022_msvc",
             "inherits": [
@@ -32,7 +31,6 @@
         },
         {
             "name": "windows-vs2022-clangcl",
-            "displayName": "Windows Visual Studio 2022 Generator + ClangCL",
             "description": "Configure Windows to use the VS2022 generator and the ClangCL compiler",
             "binaryDir": "${sourceDir}/build/windows_vs2022_clangcl",
             "inherits": [
@@ -53,7 +51,6 @@
         },
         {
             "name": "windows-ninja",
-            "displayName": "Windows Ninja Generator + MSVC",
             "description": "Configure Windows using the Ninja generator",
             "binaryDir": "${sourceDir}/build/windows_ninja_msvc",
             "inherits": [
@@ -74,7 +71,6 @@
         },
         {
             "name": "windows-ninja-clangcl",
-            "displayName": "Windows Ninja Generator + ClangCL",
             "description": "Configure Windows using the Ninja generator and the ClangCL compiler",
             "binaryDir": "${sourceDir}/build/windows_ninja_clangcl",
             "inherits": [
