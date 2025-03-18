@@ -11,7 +11,6 @@
     "configurePresets": [
         {
             "name": "linux-ninja-gcc",
-            "displayName": "Linux Ninja Generator + GCC",
             "description": "Configure Linux to use the Ninja generator and the GCC compiler",
             "binaryDir": "${sourceDir}/build/linux_ninja_gcc",
             "inherits": [
@@ -24,7 +23,6 @@
         },
         {
             "name": "linux-ninja-clang",
-            "displayName": "Linux Ninja Generator + Clang++",
             "description": "Configure Linux to use the Ninja generator and the Clang++ compiler",
             "binaryDir": "${sourceDir}/build/linux_ninja_clang",
             "inherits": [
