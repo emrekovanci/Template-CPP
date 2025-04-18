@@ -15,6 +15,7 @@ InlayHints:
   Designators: Yes
   ParameterNames: Yes
   DeducedTypes: Yes
+  DefaultArguments: Yes
   TypeNameLimit: 24
 
 Hover:
