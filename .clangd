@@ -1,8 +1,6 @@
 # https://clangd.llvm.org/
 
 CompileFlags:
-  Add:
-    - "-ferror-limit=0"
   CompilationDatabase: .vscode
 
 Style:
