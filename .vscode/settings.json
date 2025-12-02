@@ -32,9 +32,14 @@
     "cmake.copyCompileCommands": "${workspaceFolder}/.vscode/compile_commands.json",
     "cmake.options.statusBarVisibility": "hidden",
     // to disable showing the same problem twice (clangd & cmake)
+    "cmake.parseBuildDiagnostics": false,
     "cmake.enabledOutputParsers": [
         "cmake",
+        "gcc",
         "gnuld",
+        "msvc",
+        "ghs",
+        "diab"
     ],
     "cmake.pinnedCommands": [
         "cmake.selectConfigurePreset",
