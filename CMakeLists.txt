@@ -16,10 +16,5 @@ include(cmake/Config.cmake)
 include(cmake/CompilerWarnings.cmake)
 include(cmake/LinkerFlags.cmake)
 
-if(FEATURE_TESTS)
-    enable_testing()
-    find_package(Catch2 REQUIRED)
-endif()
-
 add_subdirectory(library)
 add_subdirectory(app)

@@ -1,6 +1,9 @@
 # ---- Dependencies ----
 
+find_package(Catch2 REQUIRED)
+include(CTest)
 include(Catch)
+
 set(CMAKE_CATCH_DISCOVER_TESTS_DISCOVERY_MODE PRE_TEST)
 
 # ---- Define executable ----
