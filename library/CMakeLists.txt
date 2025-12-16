@@ -34,6 +34,6 @@ set_target_properties(Core PROPERTIES
 
 install(TARGETS Core)
 
-if (FEATURE_TESTS)
+if (BUILD_TESTING)
     add_subdirectory(test)
 endif()

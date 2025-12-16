@@ -1,6 +1,7 @@
-option(FEATURE_TESTS "Enable the tests" OFF)
-if(FEATURE_TESTS)
+option(BUILD_TESTING "Build tests" OFF)
+if(BUILD_TESTING)
     list(APPEND VCPKG_MANIFEST_FEATURES "tests")
+    enable_testing()
 endif()
 
 if(PROJECT_IS_TOP_LEVEL)
