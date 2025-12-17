@@ -16,5 +16,5 @@ include(cmake/Config.cmake)
 include(cmake/CompilerWarnings.cmake)
 include(cmake/LinkerFlags.cmake)
 
-add_subdirectory(library)
+add_subdirectory(libs)
 add_subdirectory(app)

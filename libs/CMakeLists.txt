@@ -1,10 +1,26 @@
 # ---- Define library ----
 
-add_library(Core
-    include/Core/Lib.hpp
-    src/Core/Lib.cpp
+add_library(Core)
+target_sources(Core
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Core/Lib.cpp
+    PUBLIC
+        FILE_SET HEADERS
+        BASE_DIRS
+            ${CMAKE_CURRENT_SOURCE_DIR}/include
+            ${CMAKE_CURRENT_BINARY_DIR}
+        FILES
+            ${CMAKE_CURRENT_SOURCE_DIR}/include/Core/Lib.hpp
+            ${CMAKE_CURRENT_BINARY_DIR}/Core_Export.h
 )
-target_include_directories(Core PUBLIC "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/library/include>")
+
+target_include_directories(Core
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
 set_target_warnings(Core)
 set_linker_flags(Core)
 
@@ -14,13 +30,6 @@ generate_export_header(Core
     EXPORT_MACRO_NAME CORE_API
     NO_EXPORT_MACRO_NAME CORE_PRIVATE
 )
-target_sources(Core
-    PUBLIC
-        FILE_SET HEADERS
-        BASE_DIRS ${CMAKE_CURRENT_BINARY_DIR}
-        FILES ${CMAKE_CURRENT_BINARY_DIR}/Core_Export.h
-)
-
 if(NOT BUILD_SHARED_LIBS)
     target_compile_definitions(Core PUBLIC CORE_STATIC_DEFINE)
 endif()
