@@ -17,15 +17,15 @@ endif()
 execute_process(COMMAND ${CLANG_FORMAT_EXECUTABLE} --version OUTPUT_VARIABLE CLANG_FORMAT_VERSION)
 string(REGEX MATCH "clang-format version ([0-9]+)" CLANG_FORMAT_VERSION ${CLANG_FORMAT_VERSION})
 unset(CLANG_FORMAT_VERSION)
-if(NOT CMAKE_MATCH_1 EQUAL 19)
-    message(FATAL_ERROR "clang-format version ${CMAKE_MATCH_1} not supported. Must use version 19!")
+if(NOT CMAKE_MATCH_1 EQUAL 21)
+    message(FATAL_ERROR "clang-format version ${CMAKE_MATCH_1} not supported. Must use version 21!")
 endif()
 
 # ---- Collect project files ----
 
 set(SOURCES "")
-foreach(FOLDER IN ITEMS app library)
-    file(GLOB_RECURSE folder_files "${FOLDER}/*.hpp" "${FOLDER}/*.inl" "${FOLDER}/*.cpp")
+foreach(FOLDER IN ITEMS app libs)
+    file(GLOB_RECURSE folder_files "${FOLDER}/*.h" "${FOLDER}/*.hpp" "${FOLDER}/*.inl" "${FOLDER}/*.cpp")
     list(APPEND SOURCES ${folder_files})
 endforeach()
 

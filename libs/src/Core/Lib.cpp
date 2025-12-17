@@ -1,7 +1,6 @@
 #include <Core/Lib.hpp>
 
-Lib::Lib() :
-    m_name { "Library" }
+Lib::Lib() : m_name{"Library"}
 {
 }
 
