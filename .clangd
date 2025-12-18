@@ -1,11 +1,14 @@
 # https://clangd.llvm.org/
 
 CompileFlags:
-  CompilationDatabase: .vscode
+  CompilationDatabase: .
 
 Style:
   FullyQualifiedNamespaces:
     - std
+
+Completion:
+  AllScopes: Yes
 
 InlayHints:
   Enabled: Yes
@@ -17,7 +20,7 @@ InlayHints:
   TypeNameLimit: 24
 
 Hover:
-  ShowAKA: No
+  ShowAKA: Yes
 
 # fast check related warnings: https://github.com/clangd/clangd/issues/1727
 Diagnostics:

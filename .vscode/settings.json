@@ -21,7 +21,6 @@
     // [Editor]
     "[cpp]": {
         "editor.formatOnSave": true,
-        "editor.semanticHighlighting.enabled": "configuredByTheme"
     },
 
     // [CMake]
@@ -29,18 +28,10 @@
     "cmake.configureOnEdit": false,
     "cmake.saveBeforeBuild": true,
     "cmake.clearOutputBeforeBuild": true,
-    "cmake.copyCompileCommands": "${workspaceFolder}/.vscode/compile_commands.json",
+    "cmake.copyCompileCommands": "${workspaceFolder}/compile_commands.json",
     "cmake.options.statusBarVisibility": "hidden",
     // to disable showing the same problem twice (clangd & cmake)
     "cmake.parseBuildDiagnostics": false,
-    "cmake.enabledOutputParsers": [
-        "cmake",
-        "gcc",
-        "gnuld",
-        "msvc",
-        "ghs",
-        "diab"
-    ],
     "cmake.pinnedCommands": [
         "cmake.selectConfigurePreset",
         "cmake.build",
@@ -66,7 +57,6 @@
     "clangd.detectExtensionConflicts": true,
     "clangd.onConfigChanged": "restart",
     "clangd.arguments": [
-        "--all-scopes-completion=false",
         "--background-index",
         "--background-index-priority=normal",
         "--clang-tidy=true",
