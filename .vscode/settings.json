@@ -21,7 +21,6 @@
     // [Editor]
     "[cpp]": {
         "editor.formatOnSave": true,
-        "editor.semanticHighlighting.enabled": "configuredByTheme"
     },
 
     // [CMake]
