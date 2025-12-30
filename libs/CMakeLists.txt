@@ -22,7 +22,6 @@ target_include_directories(Core
         ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 set_target_warnings(Core)
-set_linker_flags(Core)
 
 include(GenerateExportHeader)
 generate_export_header(Core

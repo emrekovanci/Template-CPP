@@ -41,7 +41,7 @@ CheckOptions:
   - { key: readability-identifier-naming.PrivateMemberCase,     value: camelBack }
   - { key: readability-identifier-naming.ProtectedMemberPrefix, value: m_ }
   - { key: readability-identifier-naming.PrivateMemberPrefix,   value: m_ }
-HeaderFilterRegex: '^.*/(app|library)/.*(h|hpp)$'
+HeaderFilterRegex: '^.*/(app|libs)/.*(h|hpp)$'
 WarningsAsErrors: '*'
 UseColor: true
 ...

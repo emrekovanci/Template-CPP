@@ -1,4 +1,4 @@
-# https://clangd.llvm.org/
+# yaml-language-server: $schema=https://json.schemastore.org/clangd.json
 
 CompileFlags:
   CompilationDatabase: .
@@ -7,20 +7,17 @@ Style:
   FullyQualifiedNamespaces:
     - std
 
-Completion:
-  AllScopes: Yes
-
 InlayHints:
-  Enabled: Yes
-  BlockEnd: Yes
-  Designators: Yes
-  ParameterNames: Yes
-  DeducedTypes: Yes
-  DefaultArguments: Yes
+  Enabled: true
+  BlockEnd: true
+  Designators: true
+  ParameterNames: true
+  DeducedTypes: true
+  DefaultArguments: true
   TypeNameLimit: 24
 
 Hover:
-  ShowAKA: Yes
+  ShowAKA: false
 
 # fast check related warnings: https://github.com/clangd/clangd/issues/1727
 Diagnostics:
@@ -29,11 +26,16 @@ Diagnostics:
   ClangTidy:
     FastCheckFilter: None
 
----
+Completion:
+  AllScopes: true
+  ArgumentLists: FullPlaceholders
+  HeaderInsertion: Never
+  CodePatterns: All
 
+---
 # Ignore packages that installed by vcpkg
 If:
-  PathMatch: (out|build).*
+  PathMatch: (out|build|vendor).*
 Diagnostics:
   Suppress: '*'
   UnusedIncludes: None
