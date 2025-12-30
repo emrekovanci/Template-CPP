@@ -57,20 +57,9 @@
     "clangd.detectExtensionConflicts": true,
     "clangd.onConfigChanged": "restart",
     "clangd.arguments": [
-        "--background-index",
-        "--background-index-priority=normal",
-        "--clang-tidy=true",
         "--completion-style=detailed", // show all function overloads. Otherwise it combines like func(...)
-        "--function-arg-placeholders=false", // when disabled, completions contain only parentheses for function calls. When enabled, completions also contain placeholders for method parameters
-        "--header-insertion=never",
         "--header-insertion-decorators=true",
-        "--limit-references=100", // default: 1000
-        "--limit-results=100", // default: 100, (affects max intellisense results, for example std::string foo; after typing "foo.")
-        "--rename-file-limit=0",
-        "--pch-storage=memory", // if disk specified, .pch files can takes too much disk space,
         "--pretty",
-        //"-j=6",
-        //"--ranking-model=decision_forest",
-        //"--log=verbose"
+        // "--pch-storage=memory",
     ],
 }
