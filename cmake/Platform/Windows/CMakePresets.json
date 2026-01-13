@@ -10,13 +10,13 @@
     ],
     "configurePresets": [
         {
-            "name": "windows-vs2022",
-            "description": "Configure Windows to use the VS2022 generator",
-            "binaryDir": "${sourceDir}/build/windows-vs2022-msvc",
+            "name": "windows-vs2026",
+            "description": "Configure Windows to use the VS2026 generator",
+            "binaryDir": "${sourceDir}/build/windows-vs2026-msvc",
             "inherits": [
                 "host-windows",
                 "cpp-standard",
-                "vs2022",
+                "vs2026",
                 "msvc",
                 "vcpkg"
             ],
@@ -30,13 +30,13 @@
             }
         },
         {
-            "name": "windows-vs2022-clangcl",
-            "description": "Configure Windows to use the VS2022 generator and the ClangCL compiler",
-            "binaryDir": "${sourceDir}/build/windows-vs2022-clangcl",
+            "name": "windows-vs2026-clangcl",
+            "description": "Configure Windows to use the VS2026 generator and the ClangCL compiler",
+            "binaryDir": "${sourceDir}/build/windows-vs2026-clangcl",
             "inherits": [
                 "host-windows",
                 "cpp-standard",
-                "vs2022",
+                "vs2026",
                 "clang-cl",
                 "vcpkg"
             ],
@@ -92,15 +92,15 @@
     ],
     "buildPresets": [
         {
-            "name": "windows-vs2022",
-            "configurePreset": "windows-vs2022",
+            "name": "windows-vs2026",
+            "configurePreset": "windows-vs2026",
             "inherits": [
                 "host-windows"
             ]
         },
         {
-            "name": "windows-vs2022-clangcl",
-            "configurePreset": "windows-vs2022-clangcl",
+            "name": "windows-vs2026-clangcl",
+            "configurePreset": "windows-vs2026-clangcl",
             "inherits": [
                 "host-windows"
             ]
@@ -122,16 +122,16 @@
     ],
     "testPresets": [
         {
-            "name": "windows-vs2022",
-            "configurePreset": "windows-vs2022",
+            "name": "windows-vs2026",
+            "configurePreset": "windows-vs2026",
             "inherits": [
                 "test-default",
                 "host-windows"
             ]
         },
         {
-            "name": "windows-vs2022-clangcl",
-            "configurePreset": "windows-vs2022-clangcl",
+            "name": "windows-vs2026-clangcl",
+            "configurePreset": "windows-vs2026-clangcl",
             "inherits": [
                 "test-default",
                 "host-windows"
