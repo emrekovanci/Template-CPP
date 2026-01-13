@@ -4,10 +4,12 @@ Checks: >
   -altera-*,
   -cert-dcl16-c,
   -cppcoreguidelines-avoid-magic-numbers,
+  -cppcoreguidelines-pro-bounds-array-to-pointer-decay,
   -fuchsia-*,
   fuchsia-multiple-inheritance,
   -google-readability-todo,
   -hicpp-uppercase-literal-suffix,
+  -hicpp-no-array-decay,
   -llvm-header-guard,
   -llvm-include-order,
   -llvmlibc-*,
@@ -19,7 +21,6 @@ Checks: >
   -readability-uppercase-literal-suffix,
 CheckOptions:
   - { key: bugprone-argument-comment.StrictMode,                           value: true }
-  - { key: bugprone-argument-comment.CommentBoolLiterals,                  value: true }
   - { key: bugprone-misplaced-widening-cast.CheckImplicitCasts,            value: true }
   - { key: bugprone-sizeof-expression.WarnOnSizeOfIntegerExpression,       value: true }
   - { key: bugprone-suspicious-string-compare.WarnOnLogicalNotComparison,  value: true }
