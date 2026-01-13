@@ -68,8 +68,8 @@ jobs:
       # https://github.com/actions/runner-images
       matrix:
         platform:
-          - { os: windows-2022, generator: vs2026, compiler: msvc, preset: windows-vs2026 }
-          - { os: windows-2022, generator: vs2026, compiler: llvm, preset: windows-vs2026-clangcl }
+          - { os: windows-2022, generator: vs2022, compiler: msvc, preset: windows-vs2022 }
+          - { os: windows-2022, generator: vs2022, compiler: llvm, preset: windows-vs2022-clangcl }
           - { os: windows-2022, generator: ninja,  compiler: msvc, preset: windows-ninja }
           - { os: windows-2022, generator: ninja,  compiler: llvm, preset: windows-ninja-clangcl }
           - { os: ubuntu-24.04, generator: ninja,  compiler: gcc,  preset: linux-ninja-gcc }
